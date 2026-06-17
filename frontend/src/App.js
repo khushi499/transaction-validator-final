@@ -16,7 +16,7 @@ function App() {
       formData.append("file", file);
 
       const res = await axios.post(
-        "http://localhost:5000/upload",
+        "https://transaction-validator-final.onrender.com/upload",
         formData
       );
 
@@ -277,7 +277,7 @@ function App() {
               <button
                 onClick={() =>
                   window.open(
-                    "http://localhost:5000/download",
+                    "https://transaction-validator-final.onrender.com/download",
                     "_blank"
                   )
                 }
