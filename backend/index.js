@@ -46,10 +46,14 @@ function validateDateTime(dateTime) {
   const dateTimePattern =
     /^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}$/;
 
-  return (
-    datePattern.test(dateTime) ||
-    dateTimePattern.test(dateTime)
-  );
+  if (
+    !datePattern.test(dateTime) &&
+    !dateTimePattern.test(dateTime)
+  ) {
+    return false;
+  }
+
+  return !isNaN(Date.parse(dateTime));
 }
 
 /* -----------------------------
@@ -65,8 +69,8 @@ function validatePayment(payment) {
   ];
 
   return validPayments.includes(
-    payment.toUpperCase()
-  );
+  payment.toString().trim().toUpperCase()
+);
 }
 
 /* -----------------------------
@@ -78,7 +82,12 @@ function validateRow(row) {
     row.phone &&
     row.country &&
     row.date &&
-    row.payment
+    row.payment &&
+    row.order_id.toString().trim() !== "" &&
+    row.phone.toString().trim() !== "" &&
+    row.country.toString().trim() !== "" &&
+    row.date.toString().trim() !== "" &&
+    row.payment.toString().trim() !== ""
   );
 }
 
